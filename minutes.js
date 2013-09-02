@@ -1,13 +1,29 @@
 $(document).ready(function(){
     $("ul.course-item-list-section-list").each(function(){
-        var minutes = 0; 
+        var seconds = 0;
         $(this).find("li").each(function(){
-            minutes += parseInt((/[0-9]+\s?min/m).exec($(this).text()));
+            var vidSeconds = 0;
+            
+            // Formats: (12:34) [12:34] with or without spaces
+            var tmpSeconds = /[\(\[]\s?\d+\s?:\s?\d+\s?[\)\]]/m.exec($(this).text());
+            if (tmpSeconds != null) {
+                tmpSeconds = /\d+\s?:\s?\d+/.exec(tmpSeconds)[0].split(":");
+                vidSeconds += (parseInt(tmpSeconds[0]) * 60) + parseInt(tmpSeconds[1]);
+            }
+            
+            // Formats: (12 min) [12 min] with or without spaces
+            if (vidSeconds < 1) {
+                var tmpSeconds = /[\(\[]\s?\d+\s?min\s?[\)\]]/m.exec($(this).text());
+                if (tmpSeconds != null) {
+                    vidSeconds = parseInt(/\d+/.exec(tmpSeconds)) * 60;
+                }
+            }
+            seconds += vidSeconds;
         });
-        if (!isNaN(minutes)) {
+        if (!isNaN(seconds)) {
             var headerContainer = $(this).prev("div.course-item-list-header");
             var header = headerContainer.find(":header");
-            header.html(header.html()+" ["+minutes+" min]");
+            header.html(header.html() + " [" + Math.round(seconds/60) + " min]");
         }
     });
 });
