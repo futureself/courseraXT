@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "courseraXT",
     "description": "Extends functionality of coursera.org",
-    "version": "1.0",
+    "version": "1.0.1",
 
     "permissions": [
         "https://coursera.org/"
