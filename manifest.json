@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "courseraXT",
+    "description": "Extends functionality of coursera.org",
+    "version": "1.0",
+
+    "permissions": [
+        "https://coursera.org/"
+    ],
+    "content_scripts": [
+    {
+        "matches": ["*://*.coursera.org/*"],
+        "js": ["jquery.js", "minutes.js"]
+    }
+    ]
+}
