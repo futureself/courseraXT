@@ -6,7 +6,7 @@ $(document).ready(function(){
             
             // Formats: (12:34) [12:34] with or without spaces
             var tmpSeconds = /[\(\[]\s?\d+\s?:\s?\d+\s?[\)\]]/m.exec($(this).text());
-            if (tmpSeconds != null) {
+            if (tmpSeconds) {
                 tmpSeconds = /\d+\s?:\s?\d+/.exec(tmpSeconds)[0].split(":");
                 vidSeconds += (parseInt(tmpSeconds[0]) * 60) + parseInt(tmpSeconds[1]);
             }
@@ -14,7 +14,7 @@ $(document).ready(function(){
             // Formats: (12 min) [12 min] with or without spaces
             if (vidSeconds < 1) {
                 var tmpSeconds = /[\(\[]\s?\d+\s?min\s?[\)\]]/m.exec($(this).text());
-                if (tmpSeconds != null) {
+                if (tmpSeconds) {
                     vidSeconds = parseInt(/\d+/.exec(tmpSeconds)) * 60;
                 }
             }
@@ -23,7 +23,7 @@ $(document).ready(function(){
         if (!isNaN(seconds)) {
             var headerContainer = $(this).prev("div.course-item-list-header");
             var header = headerContainer.find(":header");
-            header.html(header.html() + " [" + Math.round(seconds/60) + " min]");
+            header.append(" [" + Math.round(seconds/60) + " min]");
         }
     });
 });

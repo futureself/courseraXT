@@ -1,16 +1,20 @@
 {
-    "manifest_version": 2,
-    "name": "courseraXT",
-    "description": "Extends functionality of coursera.org",
-    "version": "1.0.1",
+    "manifest_version": 2
+    ,"name": "courseraXT"
+    ,"description": "Extends functionality of coursera.org"
+    ,"version": "1.0.1"
 
-    "permissions": [
+    ,"permissions": [
         "https://coursera.org/"
-    ],
-    "content_scripts": [
-    {
-        "matches": ["*://*.coursera.org/*"],
-        "js": ["jquery.js", "minutes.js"]
-    }
     ]
+    ,"content_scripts": [{
+        "matches": ["*://*.coursera.org/*"]
+        ,"js": [
+            "jquery.js"
+            ,"mutation-summary.js"
+            ,"minutes.js"
+            ,"step-rewind.js"
+        ]
+        ,"all_frames": true
+    }]
 }
