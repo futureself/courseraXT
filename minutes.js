@@ -20,7 +20,7 @@ $(document).ready(function(){
             }
             seconds += vidSeconds;
         });
-        if (!isNaN(seconds)) {
+        if (!isNaN(seconds) && seconds !== 0) {
             var headerContainer = $(this).prev("div.course-item-list-header");
             var header = headerContainer.find(":header");
             header.append(" [" + Math.round(seconds/60) + " min]");
