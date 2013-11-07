@@ -1,10 +1,10 @@
 
-var REWIND_TIME = 15; // seconds
+var REWIND_TIME = 15;  // seconds
 
 // Milliseconds. This delay is needed because
-// we must add the button after the coursera scripts
-// have worked their magic. Unfortunately, Mutation
-// Observers are not picking events inside the iframe.
+// events inside the iframe are not being picked up 
+// and we must add the rewind button after the coursera 
+// scripts have worked their magic. 
 var IFRAME_EVENT_DELAY = 5000;
 
 
@@ -13,7 +13,7 @@ function onStepRewind() {
     var video = $("iframe").contents().find("video")[0];
     if (video) {
         var time = video.currentTime - REWIND_TIME;
-        video.currentTime = ((time) < 0) ? 0 : time;
+        video.currentTime = (time < 0) ? 0 : time;
     }
 }
 
